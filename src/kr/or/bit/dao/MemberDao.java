@@ -12,6 +12,8 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import kr.or.bit.dto.Member;
+import kr.or.bit.utils.ConnectionHelper;
+import kr.or.bit.utils.DB_Close;
 
 
 public class MemberDao {
@@ -184,6 +186,43 @@ public class MemberDao {
 			}
 			return resultrow;
 	}
+
+	public Boolean Login(String id, String pwd) {
+		boolean isLogin = false;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "select id from member where id=? and pwd=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) { //맞는 데이터가 있으면
+				isLogin = true;
+			}
+			
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally{
+				try {
+					pstmt.close();
+					conn.close();//반환
+					rs.close();
+				}catch (Exception e) {
+			}
+		}
+		return isLogin;
+	}
+		
+	
+	
+		
+		
 	
 	
 	

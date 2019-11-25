@@ -3,8 +3,10 @@ package kr.or.bit.dto;
 public class File extends Board { //파일게시판
 	private int fidx; //자료실식별번호
 	private int idx;
+
 	private String oriname;
 	private String savename;
+
 	private int fsize;
 	private int cocode;
 	public int getFidx() {
@@ -20,6 +22,7 @@ public class File extends Board { //파일게시판
 		this.idx = idx;
 	}
 
+
 	public String getOriname() {
 		return oriname;
 	}
@@ -30,6 +33,7 @@ public class File extends Board { //파일게시판
 		return savename;
 	}
 	public void setSavename(String savename) {
+
 		this.savename = savename;
 	}
 	public int getFsize() {

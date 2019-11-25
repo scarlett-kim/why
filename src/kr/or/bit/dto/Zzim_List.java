@@ -1,14 +1,15 @@
 package kr.or.bit.dto;
 
 public class Zzim_List {	//찜 목록
-	private String contentid;
-	private String id;
-	public String getContentid() {
+
+	private int contentid;
+	public int getContentid() {
 		return contentid;
 	}
-	public void setContentid(String contentid) {
+	public void setContentid(int contentid) {
 		this.contentid = contentid;
 	}
+	private String id;
 	public String getId() {
 		return id;
 	}
