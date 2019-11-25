@@ -15,19 +15,20 @@ public class ReviewListService implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		int bcode = Integer.parseInt(request.getParameter("bcode"));
-		System.out.println("비코드 오니?" +bcode);  //yes.
-		
+
 		ActionForward forward = null;
 
 		try {
+			int bcode = Integer.parseInt(request.getParameter("bcode"));
+			System.out.println("비코드 오니?" +bcode);  //yes.
+			
 			BoardDao dao = new BoardDao();
 			List<Board> reviewlist= dao.showBoard(bcode);
 			request.setAttribute("reviewlist", reviewlist);
 			
 	  		  forward = new ActionForward();
 		  	  forward.setPath("/reviewList.jsp");
-		} catch (NamingException e) {
+		} catch (Exception e) {
 			
 			e.printStackTrace();
 		}
