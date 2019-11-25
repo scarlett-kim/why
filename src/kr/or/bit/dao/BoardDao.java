@@ -26,6 +26,9 @@ public class BoardDao {
 	}
 
 	public int boardInsert(Board board) {   //글쓰기Dao
+		System.out.println("dao오나요?");
+		System.out.println("나는아이디" + board.getId());
+		System.out.println("나는비코드" + board.getBcode());
 		PreparedStatement pstmt =null;
 		Connection conn = null;
 		
@@ -34,7 +37,9 @@ public class BoardDao {
 		try {														
 			conn = ds.getConnection();								
 			pstmt = conn.prepareStatement(sql);	
-			pstmt.setString(1, board.getId());
+			System.out.println("나는아이디" + board.getId());
+			System.out.println("나는비코드" + board.getBcode());
+			pstmt.setString(1,"아이디입니다");
 			pstmt.setInt(2, board.getBcode());
 			pstmt.setInt(3, board.getTcode());
 			pstmt.setString(4, board.getTitle());
@@ -46,22 +51,17 @@ public class BoardDao {
 			
 			resultrow = pstmt.executeUpdate();
 			
+			System.out.println("글쓰기 반영됐나요? : "  +resultrow);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			try {
 				pstmt.close();
-				conn.close();//반환
-				
-			
-				
 			}catch (Exception e) {
 			}
 		}
 		return resultrow;
 	}
-	
-	
 	
 	private int getMaxRefer() {
 		Connection conn = null;
@@ -89,7 +89,6 @@ public class BoardDao {
 		}
 		
 		return refer_max;
-		
 	}
 
 	public ArrayList<Board> showBoard(int bcode) {   //글목록 보기
@@ -450,8 +449,8 @@ public class BoardDao {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, file.getIdx());
-			pstmt.setInt(2, file.getOriname());
-			pstmt.setInt(3, file.getSavename());
+			pstmt.setString(2, file.getOriname());
+			pstmt.setString(3, file.getSavename());
 			pstmt.setInt(4, file.getFsize());
 			
 			resultrow = pstmt.executeUpdate();
@@ -494,6 +493,19 @@ public class BoardDao {
 		return resultrow;
 	}
 	
-	
+
+	/*
+	 * public int totalBoardCount() { //@function : 게시판 목록 수 @Date :
+	 * 2019-11-24 @Author : 배인영 Connection conn = null; PreparedStatement pstmt =
+	 * null; ResultSet rs = null; int totalcount = 0; try { conn =
+	 * ds.getConnection(); String sql="select count(*) cnt from board"; pstmt =
+	 * conn.prepareStatement(sql); rs = pstmt.executeQuery(); if(rs.next()) {
+	 * totalcount = rs.getInt("cnt"); } }catch (Exception e) {
+	 * 
+	 * }finally { try { pstmt.close(); rs.close(); conn.close();//반환 connection pool
+	 * 에 반환하기 }catch (Exception e) {
+	 * 
+	 * } } return totalcount; }
+	 */
 	
 }

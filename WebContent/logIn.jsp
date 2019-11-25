@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -91,22 +91,22 @@ button{
 		</div>
 		<div class="" id="loginboxdiv">
 			<div class="login-box well" id="loginboxinnerbox">
-				<form action="loginok.do" name="loginForm" id="loginForm"
+				<form action="LoginOk.do" name="loginForm" id="loginForm"
 					role="form" method="post">
 
 					<div class="form-group">
-						<label for="username-email">ID</label> 
-						<input name="userid" id="userid" placeholder="ID" type="text" class="form-control" />
+						<label for="id">ID</label> 
+						<input type="text" name="id" id="id" placeholder="ID" class="form-control" />
 					</div>
 					<div class="form-group">
-						<label for="password">Password</label> 
-						<input type="password" name="pwd" id="pwd" placeholder="Password" type="password" class="form-control" />
+						<label for="pwd">Password</label> 
+						<input type="password" name="pwd" id="pwd" placeholder="Password" class="form-control" />
 					</div>
 					<hr>
 					<div id="formBtn">
 					<!-- 	<button type="submit" value="LOGIN" class="btn btn-skin btn-scroll">LOGIN</button>
 						<button type="reset" value="CANCEL" class="btn btn-skin btn-scroll">CANCEL</button> -->
-						<button class="btn dorne-btn" style ="width: 100px;">로그인</button>
+						<button type="submit" class="btn dorne-btn" style ="width: 100px;">로그인</button>
                         <button class="btn dorne-btn" style ="width: 100px;">메인으로</button>
 				
 				   </div>

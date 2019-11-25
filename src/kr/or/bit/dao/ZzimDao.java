@@ -10,7 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
+import kr.or.bit.dto.Board;
 import kr.or.bit.dto.Campingjang;
 import kr.or.bit.dto.Zzim_List;
 import kr.or.bit.utils.ConnectionHelper;
@@ -61,6 +61,7 @@ DataSource ds = null;
 		return resultrow;
 	}
 	
+
 	public ArrayList<Zzim_List> zzimSearch(int contentId) {
 		
 		  Connection conn = null;

@@ -1,6 +1,7 @@
 package kr.or.bit.dto;
 
 public class Zzim_List {	//찜 목록
+
 	private int contentid;
 	public int getContentid() {
 		return contentid;
@@ -9,7 +10,6 @@ public class Zzim_List {	//찜 목록
 		this.contentid = contentid;
 	}
 	private String id;
-
 	public String getId() {
 		return id;
 	}

@@ -216,7 +216,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    
 <jsp:include page="/common/top.jsp"></jsp:include>
- <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/hero.jpg)"> 
+ <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/hero.jpg)"></div> 
 
 <section>
 <article class="container" style=" height: 80%;">
@@ -226,23 +226,21 @@
    <!--    form roll="form" 에서 속성들 role : 폼 양식이 있는 곳을 알려주거나 변경된 경우 joinok.jsp  -->
    
    <div id="joinform"class="col-sm-12" style=" height: 80%;">
-      <form role="form" action="SignUp.do" method="post" name="SignUp" id="SignUp" enctype="multipart/form-data">
+      <form role="form" action="SingUpOk.do" method="post" name="SignUp" id="SignUp">
  
    <div id="form1">
          <h5><i class="fas fa-exclamation-circle"></i>&nbsp;&nbsp;이용약관</h5>
 <br>
          
-         
          <div id="agree1">
          <jsp:include page="/join/joinAgree.html"></jsp:include>
          </div>
          <p style="text-align: left">
-         <input type="checkbox">
-         <label style="font-size: 17px">이용약관 동의 (필수)</label>
+         <input type="checkbox" name="tos1" id="tos1">
+         <label style="font-size: 17px">이용약관 동의 (필수)</label>	<!-- terms of service = TOS -->
          </p>
       </div>         
          <br><br>
-         
    <div id="form2" class="col-sm-12" style=" height: 80%;">
          <h5><i class="fas fa-exclamation-circle"></i>&nbsp;&nbsp;개인정보 수집 및 활용이용</h5>
          
@@ -253,7 +251,7 @@
          <jsp:include page="/join/joinAgree1.html"></jsp:include>
          </div>
          <p style="text-align: left">
-         <input type="checkbox">
+         <input type="checkbox" name="tos2" id="tos2">
          <label style="font-size: 17px">개인정보 수집 및 활용이용에 관한 동의 (필수)</label>
          </p>
 </div> 
