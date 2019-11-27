@@ -31,7 +31,7 @@ public class ReviewWriteService implements Action {
 				  System.out.println("파일저장 : "+uploadpath);
 					int size = 1024*1024*10;
 					
-					
+				
 				MultipartRequest multi = new MultipartRequest(
 						request,
 						uploadpath,
@@ -63,7 +63,7 @@ public class ReviewWriteService implements Action {
 	           board.setTcode(Integer.parseInt(tcode));
 	           board.setTitle(title);
 	           board.setContent(content);
-	           board.setId("가짜아이디");  
+	           board.setId(id);  
 	           
 	           File file = new File();
 
@@ -73,13 +73,15 @@ public class ReviewWriteService implements Action {
 	           
 	           
 	           BoardDao	dao = new BoardDao();
-	           int result = dao.boardInsert(board);
+	           int result = dao.boardInsert(board); // 1. 게시판에 글 넣기
 	           
-	           dao.fileInsert(file);
-	           	
+	          int result2 = dao.fileInsert(file); // 2. 게시판에 파일넣기
+	          request.setAttribute("bcode", bcode);
+	         System.out.println("비코드오니? 여기는 write 컨트롤러" + bcode);
 	 	  	  forward = new ActionForward();
-		  	  forward.setPath("/reviewList.jsp");
+		  	  forward.setPath("/ReviewList.do?bcode=202&tcode=0");
 	           
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}	
