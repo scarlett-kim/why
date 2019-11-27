@@ -1,168 +1,365 @@
-
+<%@page import="kr.or.bit.dto.Board"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-   
-<%@ taglib prefix="c" uri= "http://java.sun.com/jsp/jstl/core" %>
-
-<% session.setAttribute("id", "userid"); %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Mobile Specific Meta -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Favicon-->
+<link rel="shortcut icon" href="img/fav.png">
+<!-- Author Meta -->
+<meta name="author" content="codepixer">
+<!-- Meta Description -->
+<meta name="description" content="">
+<!-- Meta Keyword -->
+<meta name="keywords" content="">
 
-    <!-- Core Stylesheet -->
-    <link href="style.css" rel="stylesheet">
+<!-- Favicon -->
+<link rel="icon" href="img/core-img/favicon.ico">
 
-    <!-- Responsive CSS -->
-    <link href="css/responsive/responsive.css" rel="stylesheet">
+<!-- Core Stylesheet -->
+<link href="style.css" rel="stylesheet">
 
+<!-- Responsive CSS -->
+<link href="css/responsive/responsive.css" rel="stylesheet">
 
-    <!-- <script type="text/javascript" src="../ckeditor/ckeditor.js" ></script>
-   <link rel="Stylesheet" href="../style/default.css" /> -->
-   
-   
-   <!-- include libraries(jQuery, bootstrap) -->
-   <!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-  
-   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>  -->
-   
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
+	rel="stylesheet">
 
-   
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
- 
-   <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    	<SCRIPT type="text/javascript">
-	function check(){
-    if($('#title')==null){
-        alert("제목을 입력하세요");
-        $('#title').focus();
-        return false;
-    }
-    if($('#content')==null){     
-        alert("내용을 입력하세요");
-        $('#content').focus();
-        return false;
-    }
+<!-- fontAwesome -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
-    $('#reviewbtn').submit();
- 
-}
+<!--
+         CSS
+         ============================================= -->
+<link rel="stylesheet" href="css/linearicons.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="css/nice-select.css">
+<link rel="stylesheet" href="css/animate.min.css">
+<link rel="stylesheet" href="css/owl.carousel.css">
+<link rel="stylesheet" href="css/main.css">
 
-</SCRIPT>  
-</HEAD>
+<!-- jquery 추가함 iy -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
-<style>
+</head>
 
-button {
-   background-color: #341a79;
-}
+<jsp:include page="/common/top.jsp"></jsp:include>
 
-section {
-   padding-top: 200px;
-}
 
-h5, h6 {
-   text-align: left;
-}
 
-p {
-   text-align: left;
-}
-
-article {
-   margin-bottom: 10%;
-}
-</style>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <body>
 
 
-<jsp:include page="/common/top.jsp"></jsp:include>
-<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/hero.jpg)">
 
-   <section>
-      <article class="container" style="height: 90%;">
-         <div class="animatedParent" id="myString">
-            <div class="section-heading text-center animated fadeInDown">
-               <h2 class="h-bold">
-                  <i class="fas fa-edit"></i>&nbsp;&nbsp;Review Detail
-               </h2>
-            </div>
-         </div>
 
-         <div id="writeForm" class="col-sm-12" style="height: 80%;">
-           
+	<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/hero.jpg)">
+		<!-- Start post Area -->
 
-            <div class="row">
-               <div class="col-md-2"></div>
-               <div class="col-md-8">
-                  <form action="logIn.jsp" method="post" name="review" id="review" enctype="multipart/form-data">
-                     <table class="table">
-                        <tr>
-                           <td><h6>Title</h6></td>
-                           <td><input type="text" class="form-control" name="title" id="title"></td>
-                        </tr>
-                        
-                         <tr>
-                           <td><h6>Writer</h6></td>  <!-- hidden으로 숨길까? -->
-                           <td><input type="text" class="form-control" name="id" id="id" readonly>${param.userid}</td>
-                        </tr>
 
-                        <tr>
-                           <td><h6>Content</h6></td>
-                           <td><textarea rows="100" cols="100" name="content" id="content" class="form-control ckeditor" style="height:500; overflow:visible;"></textarea></td>
-                        </tr>
 
-                        <tr>
-                           <td><h6>File</h6></td>
-                           <td><input type="file" name="filename"></td>
-                        </tr>
-                        <tr>
-                        
-                        <tr> <!--  bcode / cocode -->
-                           <td><h6>게시판코드</h6></td>
-                           <td><input type="hidden" name=""></td>
-                        </tr>
-                        <tr>
-                        
+		<section class="post-area section-gap" style="padding-top: 10px;">
 
-                           <td colspan="2" class="text-center">
-                              <button type="submit" id="reviewbtn" class="btn dorne-btn" style="width: 200px;" onclick="check()" >
-                                 <i class="far fa-check-circle"></i>&nbsp;&nbsp;회원가입완료
-                              </button>
-                              <button type="reset" class="btn dorne-btn" style="width: 200px;">
-                                 <i class="far fa-times-circle"></i>&nbsp;초기화
-                              </button>
-                              <button type="button" class="btn dorne-btn">전체 게시글보기</button>
-                           </td>
-                        </tr>
+			<div class="section-heading text-center animated fadeInDown">
+				<h2 class="h-bold">
+					<i class="fas fa-campground"></i>&nbsp;&nbsp;Review Detail
+				</h2>
+			</div>
 
-                     </table>
-                  </form>
-               </div>
-            </div>
+			<div style="text-align: center;">
+				<a href="ShowReviewWrite.do?bcode=202&tcode=0" class="btn mini blue">
 
-         </div>
+				</a>
 
-      </article>
-   </section>
+				<c:set var="detail" value="${requestScope.reviewdetail}" />
+<script type="text/javascript">
 
-   </body>
-   <jsp:include page="/common/bottom.jsp"></jsp:include>
-   
-       <script>
-    ClassicEditor
-        .create( document.querySelector( '#content' ) );
-       
-    </script>
+console.log('${detail.id}');
+console.log('아이디뭐니?'+'${sessionScope.id}');
+console.log('현재페이지' + '${requestScope.cp}');
+console.log('페이지사이즈' + '${requestScope.ps}');
+console.log('현재페이지 idx' + '${requestScope.idx}');
+
+$(function(){
+	//var temp = "ReviewEdit.do?bcode=202&tcode=0&cp=${requestScope.cp}&ps=${requestScope.ps}&idx=${requestScope.idx}";
+	//var temp2 = "ReviewDelete.do?bcode=202&tcode=0&cp=${requestScope.cp}&ps=${requestScope.ps}&idx=${requestScope.idx}";
+	//console.log(temp +"/" + temp2)
+	if('${detail.id}' != '${sessionScope.id}') {
+		
+		$('#editbtn').remove();
+		$('#deletebtn').remove();
+		
+	}
+});
+
+</script>
+
+				<section class="blog-posts-area section-gap">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12 post-list blog-post-list">
+
+								<div class="single-post">
+									<div style="text-align: left">
+									
+										<button type="button" class="btn" value="List" style="margin: 2px" onclick="location.href='ReviewList.do?bcode=202&tcode=0&cp=${requestScope.cp}&ps=${requestScope.ps}'">
+											<i class="fas fa-undo-alt"></i>&nbsp;&nbsp;List
+										</button>
+									<div id="btns"></div>
+									
+								
+										<button type="button" id="editbtn" class="btn" value="Edit" style="margin: 2px" onclick="location.href='ReviewEdit.do?bcode=202&tcode=0&cp=${requestScope.cp}&ps=${requestScope.ps}&idx=${requestScope.idx}&fidx=${detail.fidx}'">
+											<i class="far fa-edit"></i>&nbsp;&nbsp;Edit
+										</button>
+									
+										<button type="button" id="deletebtn" class="btn" value="List" style="margin: 2px" onclick="location.href='ReviewDelete.do?bcode=202&tcode=0&cp=${requestScope.cp}&ps=${requestScope.ps}&idx=${requestScope.idx}&fidx=${detail.fidx}'">
+											<i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Delete
+										</button> 
+									
+									</div>
+									<ul class="tags">
+
+										<li><i class="fas fa-angle-right"></i>&nbsp;&nbsp;아이디 |
+											${detail.id}&nbsp;&nbsp;</li>
+										<li>작성일 | ${detail.writedate}&nbsp;&nbsp;</li>
+										<li>조회수 | ${detail.readnum}&nbsp;&nbsp;</li>
+									</ul>
+
+									<hr>
+									<h1>
+										<!-- 제목부분 -->
+										${detail.title}
+									</h1>
+									<img class="img-fluid" src="upload/${detail.savename}"
+										alt="후기사진입니다" style="width: 50%">
+
+
+
+									<div class="content-wrap">
+										<br>
+										<p>
+											<!-- 글내용 -->
+											${detail.content}
+										</p>
+									</div>
+
+
+
+									<!-- Start comment -->
+									<section class="comment-sec-area pt-40 pb-40">
+										<div class="container">
+											<div class="row flex-column" style="text-align: left">
+												<h5 class="text-uppercase pb-40">
+													<span class="lnr lnr-bubble"></span> Comments
+												</h5>
+
+												<!-- 한개는 comment form으로 사용 -->
+												<form name="reply"
+													action="ReviewReplyAdd.do?bcode=202&tcode=0" method="get">
+													<div class="comment-list">
+														<div class="single-comment justify-content-between d-flex">
+															<div class="user justify-content-between d-flex">
+																<div class="thumb">
+																	<i class="fab fa-replyd fa-5x"></i>
+
+																</div>
+																<div class="desc" style="text-align: left">
+
+																	ID : ${sessionScope.id} <br>
+																	<textarea id="replycontent" name="replycontent"
+																		rows="3" cols="100" style="resize: none;"></textarea>
+																</div>
+															</div>
+															<input type="hidden" id="idx" name="idx"
+																value="${detail.idx}" /> <input type="hidden" id="id"
+																name="id" value="${sessionScope.id}" /> <input
+																type="button" id="reviewbtn" name="reviewbtn"
+																class="btn-reply text-uppercase" value="reply"
+																onclick="addreply()">
+
+														</div>
+													</div>
+												</form>
+												<c:set var="sid" value="${sessionScope.id}" />
+												<div class="comment-list" id="replylist"></div>
+
+
+
+												<script type="text/javascript">
+
+													$(function() {
+														getReplyList();
+														//addreply();
+														//deletereply();
+													})
+
+
+													var param1 = {
+															 "idx":${detail.idx},
+															 "bcode":${detail.bcode},
+															 "tcode":${detail.tcode}
+																};
+													
+													 
+  													 function getReplyList() {
+ 															$.ajax({
+																url:"ShowReviewReply.do",
+																dataType:"JSON",
+																data: param1,
+																type:"get",
+																success: function(data){
+																		//console.log(data);
+																		//console.log(typeof(data));
+																		$('#replylist').empty();
+																			$.each(data, function(index, object) {
+																				//console.log(object);
+																				//console.log(object.replyid);
+																				//console.log(object.replycontent);
+																				let control = '<div class="single-comment justify-content-between d-flex" name='+object.replyid+' style="margin:2px"><div class="user justify-content-between d-flex">'
+																							+ '<div class="thumb"><img src="img/blog/c1.jpg" alt=""></div><div class="desc">'
+																							+ '<span><strong>'+object.replyid+'</strong></span>&nbsp;&nbsp;&nbsp;<span class="date">'+object.replydate+'</span>'
+																							+ '<p class="comment">'+object.replycontent+'</p></div>'
+																							+ '</div>'
+																							
+																					//console.log($('#replyuser').text());
+																					//console.log('${sessionScope.id}');
+																				if(object.replyid == '${sessionScope.id}') {
+																					control += '<input type="button" class="btn" id='+object.replyidx+' value="Delete" style="margin:2px">'
+																				}
+																				control += '</div>';
+																				
+																				
+																				
+																				//console.log(control);
+																	
+																				$('#replylist').append(control);
+
+																				var replyidx = object.replyidx;
+																				var replyid = object.replyid;
+																				
+																				var param3 = {"replyidx" : object.replyidx,
+																						  "bcode" : ${detail.bcode},
+																					      "tcode" : ${detail.tcode}
+																						  };
+																				//Reply delete
+																				$('#'+object.replyidx).click(function(){  
+																					console.log(replyidx);
+																					console.log("텍스트" + '${sessionScope.id}');
+																					console.log("유저아이디" + replyid);
+																					if(object.replyid == '${sessionScope.id}'){
+																						console.log("여기들어오니?");
+																						console.log(replyid == '${sessionScope.id}');
+																						$.ajax({
+																							url:"DeleteReviewReply.do",
+																							data:param3,
+																							dataType:"text",
+																							success: function(data){
+																								console.log("댓글 삭제 data : " +data);
+																								alert('댓글이 삭제되었습니다.');
+																							}
+																						})
+																						$(this).parent().remove();
+																					}else{
+																						alert('댓글삭제실패');
+																						
+																					}
+																				})
+																			})
+																}
+															})
+														}   
+													 
+													 
+														function addreply(){
+														//console.log("들어오니? 댓글아");
+														//console.log("들어오니? 댓글아2"+ ${detail.bcode});
+														//console.log("들어오니? 댓글아3"+ ${detail.tcode});
+														
+																var param = {
+																		       "idx":${detail.idx},
+																			   "replycontent":$('#replycontent').val(),
+																			   "bcode":${detail.bcode},
+																			   "tcode":${detail.tcode}
+																		    };
+																
+																$.ajax({
+																	url:"ReviewReplyAdd.do",
+																	data:param,
+																	success: function(data){
+																		console.log("댓글 추가 data : " +data);
+ 																		if(data.trim()=="success"){
+																			alert("댓글등록성공");
+																			getReplyList();
+																			$('#replycontent').val("");
+																		}else{
+																			alert("댓글등록실패");
+																		} 
+																		
+																	}
+																	
+																})
+																return false;
+														}
+											
+														
+
+														
+														
+														
+												</script>
+
+											</div>
+										</div>
+									</section>
+									<!-- End comment-sec Area -->
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</section>
+
+			</div>
+		</section>
+
+
+		<!-- End footer Area -->
+
+		<!-- 		<script src="js/vendor/jquery-2.2.4.min.js"></script> -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+			crossorigin="anonymous"></script>
+		<script src="js/vendor/bootstrap.min.js"></script>
+		<!--    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script> -->
+		<script src="js/easing.min.js"></script>
+		<script src="js/hoverIntent.js"></script>
+		<script src="js/superfish.min.js"></script>
+		<script src="js/jquery.ajaxchimp.min.js"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+		<script src="js/jquery.sticky.js"></script>
+		<script src="js/jquery.nice-select.min.js"></script>
+		<script src="js/parallax.min.js"></script>
+		<script src="js/mail-script.js"></script>
+		<script src="js/main.js"></script>
+		<jsp:include page="/common/bottom.jsp"></jsp:include>
+</body>
+
 </html>
+
+

@@ -16,6 +16,14 @@ import kr.or.bit.service.DetailCrossService;
 import kr.or.bit.service.ListCrossService;
 import kr.or.bit.service.LoginService;
 import kr.or.bit.service.LogoutService;
+import kr.or.bit.service.RecentReviewService;
+import kr.or.bit.service.ReplyDeleteService;
+import kr.or.bit.service.ReplyListService;
+import kr.or.bit.service.ReplyWriteService;
+import kr.or.bit.service.ReviewDeleteService;
+import kr.or.bit.service.ReviewDetailService;
+import kr.or.bit.service.ReviewEditOkService;
+import kr.or.bit.service.ReviewEditService;
 import kr.or.bit.service.ReviewListService;
 import kr.or.bit.service.ReviewWriteService;
 import kr.or.bit.service.SignUpService;
@@ -49,10 +57,9 @@ public class FrontController extends HttpServlet {
          try {
             forward = action.execute(request, response);
          } catch (NamingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
          }
-         System.out.println("캠핑API 서비스 갔다왔어요. 지금은 CONTROLLER ");
+         //System.out.println("캠핑API 서비스 갔다왔어요. 지금은 CONTROLLER ");
       } else if (url_Command.equals("/CampingListview.do")) {
          // UI처리
          forward = new ActionForward();
@@ -63,7 +70,6 @@ public class FrontController extends HttpServlet {
          try {
             forward = action.execute(request, response);
          } catch (NamingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
          }
          System.out.println("캠핑API 서비스 갔다왔어요. 지금은 CONTROLLER ");
@@ -77,7 +83,6 @@ public class FrontController extends HttpServlet {
          } catch (NamingException e) {
             e.printStackTrace();
          }
-
       } else if (url_Command.equals("/LogIn.do")) {
          forward = new ActionForward();
          forward.setPath("/logIn.jsp");
@@ -101,7 +106,6 @@ public class FrontController extends HttpServlet {
          try {
             forward = action.execute(request, response);
          } catch (NamingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
          }
          System.out.println("찜리스트 검색중");
@@ -112,7 +116,6 @@ public class FrontController extends HttpServlet {
          try {
             forward = action.execute(request, response);
          } catch (NamingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
          }
       } else if (url_Command.equals("/ReviewList.do")) { // @function : 후기리스트 @Date : 2019-11-24 @Author : 배인영
@@ -121,25 +124,78 @@ public class FrontController extends HttpServlet {
          try {
             forward = action.execute(request, response);
          } catch (NamingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
          }
-      } else if (url_Command.equals("/ShowReviewWrite.do")) { // @function : 후기 글쓰기 페이지 view단 @Date : 2019-11-24
-                                                // @Author : 배인영
+      } else if (url_Command.equals("/ShowReviewWrite.do")) { // @function : 후기 글쓰기 페이지 view단 @Date : 2019-11-24 @Author : 배인영
          // UI처리
          forward = new ActionForward();
          forward.setPath("/review_write.jsp");
-      } else if (url_Command.equals("/ShowrReviewDetail.do")) {// @function : 후기 글쓰기 페이지 view단 @Date : 2019-11-24
-                                                   // @Author : 배인영
+      } else if (url_Command.equals("/ShowReviewDetail.do")) {// @function : 후기 글쓰기 페이지 view단 @Date : 2019-11-24 @Author : 배인영
          // UI처리 + 로직처리
-         action = new ReviewListService();
-         try {
-            forward = action.execute(request, response);
-         } catch (NamingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-         }
-      }
+         action = new ReviewDetailService();
+          try {
+			forward = action.execute(request, response);
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+      }else if(url_Command.equals("/ReviewReplyAdd.do")) {// @function : 후기 댓글 추가  @Date : 2019-11-26 @Author : 배인영
+    	  //UI처리 + 로직처리 
+    	  action = new ReplyWriteService();
+    	  try {
+			forward = action.execute(request, response);
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+		}else if(url_Command.equals("/ShowReviewReply.do")) {// @function : 후기 댓글 보여주세요 @Date : 2019-11-26 @Author : 배인영
+			//UI처리 + 로직처리
+	    	  action = new ReplyListService();
+	    	  try {
+				forward = action.execute(request, response);
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+		}else if(url_Command.equals("/DeleteReviewReply.do")) { // @function : 후기 댓글 삭제 @Date : 2019-11-27 @Author : 배인영
+			System.out.println("DeleteReviewReply컨트롤러오니?");
+	    	  action = new ReplyDeleteService();
+			try {
+				forward = action.execute(request, response);
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+		}else if(url_Command.equals("/ReviewEdit.do")) { // @function : 후기 수정(보여주는부분select)  @Date : 2019-11-27 @Author : 배인영
+			 action = new ReviewEditService();
+			 try {
+				forward = action.execute(request, response);
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+		}else if(url_Command.equals("/ReviewEditOk.do")) { // @function : 후기 수정(처리하는부분update)  @Date : 2019-11-27 @Author : 배인영
+			 action = new ReviewEditOkService();
+			 try {
+				forward = action.execute(request, response);
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+		}else if(url_Command.equals("/ReviewDelete.do")) { // @function : 후기 삭제  @Date : 2019-11-27 @Author : 배인영
+			 action = new ReviewDeleteService();
+			 try {
+				forward = action.execute(request, response);
+				System.out.println("여기오니? ");
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+		}else if(url_Command.equals("/RecentReview.do")) { // @function : 최근후기 5개 (메인에뿌릴것)  @Date : 2019-11-27 @Author : 배인영
+			System.out.println("여기오니?최근후기");
+			 action = new RecentReviewService();
+			 try {
+				forward = action.execute(request, response);
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+		}
+			
+         
+      
 
       if (forward != null) {
 

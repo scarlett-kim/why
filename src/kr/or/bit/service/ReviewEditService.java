@@ -1,40 +1,37 @@
 package kr.or.bit.service;
 
-import java.util.List;
-
+import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 import kr.or.bit.dao.BoardDao;
-import kr.or.bit.dto.Board;
 import kr.or.bit.dto.File;
 
-public class ReviewDetailService implements Action{
+public class ReviewEditService implements Action{
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws NamingException {
+
 		ActionForward forward = null;
 
 		try {
 			int idx = Integer.parseInt(request.getParameter("idx"));
 			int ps = Integer.parseInt(request.getParameter("ps"));
 			int cp = Integer.parseInt(request.getParameter("cp"));
-			//System.out.println("idx 목록에서 가져오니?" + idx);
+			int fidx = Integer.parseInt(request.getParameter("fidx"));
+			
 			BoardDao dao = new BoardDao();
-			File reviewdetail= dao.detailFileBoard(idx);
-			//System.out.println("리뷰 디테일 서비스에서 나오니?" + reviewdetail);
-			request.setAttribute("reviewdetail", reviewdetail);
+			File reviewedit= dao.detailFileBoard(idx);
+			request.setAttribute("reviewedit", reviewedit);
 			request.setAttribute("idx", idx);
 			request.setAttribute("ps", ps);
 			request.setAttribute("cp", cp);
+			request.setAttribute("fidx", fidx);
 
-
-			//System.out.println(reviewdetail);
 	  		  forward = new ActionForward();
-		  	  forward.setPath("/review_detail.jsp");
+		  	  forward.setPath("/review_edit.jsp");
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -43,5 +40,3 @@ public class ReviewDetailService implements Action{
 		return forward;
 	}
 }
-
-

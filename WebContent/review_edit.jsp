@@ -42,7 +42,33 @@
    <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <SCRIPT type="text/javascript">
-	function check(){
+    
+    
+	window.onload=function(){
+		
+	    //미리보기 부분 
+	    var file = document.querySelector('#filename');
+ 
+	    file.onchange = function () { 
+	    var fileList = file.files ;
+	    
+	    // 읽기
+	    var reader = new FileReader();
+	    reader.readAsDataURL(fileList [0]);
+
+	    //로드 한 후
+	    reader.onload = function  () {
+	        document.querySelector('#previewImage').src = reader.result ;
+	    }; 
+	}; 
+		
+};
+
+
+
+
+    
+	function editclick(){
     if($('#title')==null){
         alert("제목을 입력하세요");
         $('#title').focus();
@@ -54,7 +80,7 @@
         return false;
     }
 
-    $('#reviewbtn').submit();
+    $('#editbtn').submit();
 }
 
 </SCRIPT>  
@@ -98,64 +124,67 @@ article {
 <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/hero.jpg)">
 
 <script type="text/javascript">
-console.log("콘솔에찍히니?" + ${sessionScope.id});
-
 </script>
    <section>
       <article class="container" style="height: 90%;">
          <div class="animatedParent" id="myString">
             <div class="section-heading text-center animated fadeInDown">
                <h2 class="h-bold">
-                  <i class="fas fa-edit"></i>&nbsp;&nbsp;Review Write
+                  <i class="fas fa-edit"></i>&nbsp;&nbsp;Review Edit
                </h2>
             </div>
          </div>
 
+
+<c:set var="review" value="${requestScope.reviewedit}"></c:set>
+<script type="text/javascript">
+console.log(${review.fidx});
+</script>
          <div id="writeForm" class="col-sm-12" style="height: 80%;">
            
 
             <div class="row">
                <div class="col-md-2"></div>
                <div class="col-md-8">
-                  <form action="ReviewAdd.do" method="post" name="review" id="review" enctype="multipart/form-data">
+                  <form action="ReviewEditOk.do?bcode=202&tcode=0&cp=${requestScope.cp}&ps=${requestScope.ps}&idx=${requestScope.idx}&fidx=${review.fidx}" method="post" name="review" id="review" enctype="multipart/form-data">
                      <table class="table">
                         <tr>
                            <td><h6>Title</h6></td>
-                           <td><input type="text" class="form-control" name="title" id="title"></td>
+                           <td><input type="text" class="form-control" name="title" id="title" value="${review.title}"></td>
                         </tr>
                         
                           <tr>
-                           <td><h6>Writer</h6></td>  <!-- hidden으로 숨길까? -->
-                           <td><input type="text" class="form-control" name="id" id="id" value="${sessionScope.id}" readonly></td>
+                           <td><h6>Writer</h6></td>  
+                           <td><input type="text" class="form-control" name="id" id="id" value="${review.id}" readonly></td>
                         </tr>
 
                         <tr>
                            <td><h6>Content</h6></td>
-                           <td><textarea rows="100" cols="100" name="content" id="content" class="form-control ckeditor" style="height:500; overflow:visible;"></textarea></td>
+                           <td><textarea rows="100" cols="100" name="content" id="content" class="form-control ckeditor" style="height:500; overflow:visible;" value="${review.content}">${review.content}</textarea></td>
                         </tr>
 
                         <tr>
                            <td><h6>File</h6></td>
-                           <td><input type="file" name="filename"></td>
+                           
+                           <td><input type="file" name="filename" value="${review.savename}">
+                           <img id="previewImage" src="upload/${review.savename}" width="100" alt="로컬에 있는 이미지가 보여지는 영역" onerror="this.src='./img/bg-img/error.png'">
+							</td>
                         </tr>
                         <tr>
                         
-                    <tr id="dataForM">
+   <%--                  <tr id="dataForM">
                         <!-- 202 : 후기파일 게시판  -->
                         <td width="80%" align="left"><input type="hidden" id="bcode"  name="bcode" value='${param.bcode}'></td>
                         <!-- tcode : 0 거래없음 -->
                         <td width="80%" align="left"><input type="hidden" id="tcode" type="text" name="tcode" value='${param.tcode}'></td>                      
-                    </tr>
+                    </tr> --%>
                         
 						<tr>
                            <td colspan="2" class="text-center">
-                              <button type=submit id="reviewbtn" class="btn dorne-btn" style="width: 200px;" onclick="check()" >
-                                 <i class="far fa-check-circle"></i>&nbsp;&nbsp;글쓰기
+                              <button type=submit id="editbtn" class="btn dorne-btn" style="width: 200px;" onclick="editclick()" >
+                                 <i class="far fa-check-circle"></i>&nbsp;&nbsp;수정하기
                               </button>
-                              <button type="reset" class="btn dorne-btn" style="width: 200px;">
-                                 <i class="far fa-times-circle"></i>&nbsp;초기화
-                              </button>
-                              <a href="ReviewList.do?bcode=202&tcode=0"><button type="button" class="btn dorne-btn">전체 게시글보기</button></a>
+                              <a href="ReviewList.do?bcode=202&tcode=0"><button type="button" class="btn dorne-btn">목록으로</button></a>
                            </td>
                         </tr>
 

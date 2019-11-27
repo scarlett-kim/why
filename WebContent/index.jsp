@@ -46,13 +46,13 @@
         	 $.each(val,function(index, obj) {
         		  var temp = ''+obj.readcount+'';
         		  var option = {v:obj.readcount, f:temp};
-        		  console.log(option);
+        		  //console.log(option);
         		  var option2 = obj.title;
         		  arr[index] = [option2, option];
         		  
         	  });
         	 arr1[0]=arr;
-        	 console.log(arr1[0]);
+        	 //console.log(arr1[0]);
         	 data.addRows(arr1[0]);
         var table = new google.visualization.Table(document.getElementById('table_div'));
 
@@ -68,39 +68,7 @@
        
       }
     </script>
-<script type="text/javascript">
-               $(function() {
-            		   $.ajax({          
-            			   url: 'CampinglistCrossCK.do',
-                           type: 'get',
-                           dataType: 'json',
-                           success: function(responsedata){
-                        	   var val = responsedata.response.body.items.item; //rdnmadr
-                        	   var front = new Set();
-                        	   var full = new Set();
-                        	   $.each(val,function(index, obj) {
-                        		   front.add(obj.addr1.split(" ")[0]);
-                        		   full.add(obj.addr1.split(" ")[0]+" "+obj.addr1.split(" ")[1]);
-                        		   });
-                        	   var frontArr = [...front];
-                        	   var fullArr = [...full];
-                        	   for(var i=0; i<frontArr.length;i++){
-                        		   $('#sigun').append("<option id='"+frontArr[i]+"' value='"+frontArr[i]+"'>"+frontArr[i]+"</option>");
-                        	   }
-                        	   $('#sigun').change(function() {
-                        		   $('#si').empty();
-                    			   for(var i=0;i<fullArr.length;i++){
-                    				   if($('#sigun').val()==fullArr[i].split(" ")[0]){
-                    					   $('#si').append("<option value='"+fullArr[i].split(" ")[1]+"'>"+fullArr[i].split(" ")[1]+"</option>");
-                    				   }
-                    			   }
-                        	   });
-                        		   
-                        	   
-                           }
-                       });
-               });      
-           </script>
+
 </head>
 <style>
 .feature-content {
@@ -336,7 +304,48 @@
     </section>
     <!-- ***** 추천 캠핑장 & 공지사항 & 날씨 끝 ***** -->
 
+
+
+
     <!-- ***** 메인페이지  : 후기 시작 ***** -->
+    
+    
+    <script type="text/javascript">
+    $(function(){
+    	console.log("여보세요?");
+
+    	
+    	$.ajax({
+    		url:"RecentReview.do",
+			dataType:"JSON",
+			data: {"bcode" : 202},
+			type:"get",
+			success: function(data){
+				console.log("데이터야 나오니?" +data);
+				console.log(data);
+				//console.log(data[0].id);
+				$.each(data, function(index, object){
+					console.log(object);
+					console.log(object.savename);
+					var page = '<div class="single-features-area" style="width:25%; margin:2%"><img src="upload/'+object.savename+'">'
+					          +'<div class="price-start"><p id ="pp"> ID :&nbsp;&nbsp;'+object.id+'</p></div>'
+					          +'<div class="feature-content d-flex align-items-center justify-content-between" style="height:30px">'
+					          +'<div class="feature-title"><h5>'+object.title+'</h5>'
+					          +'<p>'+object.writedate+'</p></div><div class="feature-favourite"><a href="#">'
+					          +'<i class="fa fa-heart-o" aria-hidden="true"></i></a></div></div></div>';
+					console.log(page);
+					$('#review').append(page);
+
+				});
+			}
+    		
+    	});
+    	
+    });
+    
+    </script>
+    
+    
     <section class="dorne-features-destinations-area">
         <div class="container-fluid">
             <div class="row">
@@ -344,35 +353,37 @@
                     <div class="section-heading dark text-center">
                         <span></span>
                         <h4>Review</h4>
-                        <p>캠핑장 다녀온 후기</p>
+                        <p>캠핑장 최근 후기</p>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-12">
-                    <div class="features-slides owl-carousel">
+                    <div class="features-slides owl-carousel" id="review">
                         <!-- Single Features Area -->
-                        <div class="single-features-area">
-                            <img src="img/bg-img/feature-2.jpg" alt="">
-                            <!-- Price -->
+                         <div class="single-features-area">
+                            <img src="upload/object.savename" alt="">
+                            Price
                             <div class="price-start" >
-                                <p id ="pp">FROM $59/night</p>
+                                <p id ="pp">object.id</p>
                             </div>
                             <div class="feature-content d-flex align-items-center justify-content-between" >
                                 <div class="feature-title" >
-                                    <h5>Ibiza</h5>
-                                    <p>Party</p>
+                                    <h5>object.title</h5>
+                                    <p>object.writedate</p>
                                 </div>
                                 <div class="feature-favourite">
                                     <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Single Features Area -->
+                        </div> 
+                        
+                        
+                         Single Features Area
                         <div class="single-features-area">
                             <img src="img/bg-img/feature-2.jpg" alt="">
-                            <!-- Price -->
+                            Price
                             <div class="price-start">
                                 <p id ="pp">FROM $59/night</p>
                             </div>
@@ -386,10 +397,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Single Features Area -->
+                        Single Features Area
                         <div class="single-features-area">
                             <img src="img/bg-img/feature-3.jpg" alt="">
-                            <!-- Price -->
+                            Price
                             <div class="price-start">
                                 <p id ="pp">FROM $59/night</p>
                             </div>
@@ -403,10 +414,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Single Features Area -->
+                         Single Features Area
                         <div class="single-features-area">
                             <img src="img/bg-img/feature-4.jpg" alt="">
-                            <!-- Price -->
+                            Price
                             <div class="price-start">
                                 <p id ="pp">FROM $59/night</p>
                             </div>
@@ -420,10 +431,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Single Features Area -->
+                        Single Features Area
                         <div class="single-features-area">
                             <img src="img/bg-img/feature-5.jpg" alt="">
-                            <!-- Price -->
+                            Price
                             <div class="price-start">
                                 <p id ="pp">FROM $59/night</p>
                             </div>
@@ -436,7 +447,7 @@
                                     <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>

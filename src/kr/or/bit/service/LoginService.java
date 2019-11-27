@@ -36,8 +36,7 @@ public class LoginService implements Action{
 	         //세션 가져와서 login 정보 저장
 	         HttpSession session = request.getSession();
 	         session.setAttribute("id",id);
-	         
-	         board_msg = "로그인 성공";
+	         board_msg = "로그인 성공 : "+id;
 	         board_url = request.getContextPath()+"/index.jsp";
 	      }else {
 	         board_msg = "로그인 실패, 다시 시도해 주세요.";
