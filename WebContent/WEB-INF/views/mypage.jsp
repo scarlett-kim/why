@@ -280,10 +280,10 @@ $(function(){
 
 <div class="tab">
 
-  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">나의 찜 목록</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')">내가 쓴 후기</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">내가 쓴 판매게시글</button>
-  <button class="tablinks" onclick="openCity(event, 'MyInfo')">나의 정보 수정</button>
+  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen" ><h5 style ="color:#333333;">나의 찜 목록</h5></button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')"><h5 style ="color:#333333;">내가 쓴 후기</h5></button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')"><h5 style ="color:#333333;">내가 쓴 판매 게시글</h5></button>
+  <button class="tablinks" onclick="openCity(event, 'MyInfo')"><h5 style ="color:#333333;">내 정보 수정</h5></button>
  
 </div>
 

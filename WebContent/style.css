@@ -459,7 +459,7 @@ li {
 }
 
 .sticky .header_area {
-    background-color: rgba(14, 2, 35, 0.9);
+    background-color:  #125448;
     height: 80px;
     z-index: 9999;
     border-bottom: 1px solid transparent;
@@ -1385,7 +1385,7 @@ li {
     padding-left: 93px;
     margin-top: 30px;
 }
-
+ㄴ
 .reviewer-name p {
     margin-bottom: 0;
     font-size: 12px;

@@ -12,7 +12,7 @@
             <div class="row h-100">
                 <div class="col-12 h-100">
                     <nav class="h-100 navbar navbar-expand-lg">
-                        <a class="navbar-brand" href="index.jsp"><img src="img/core-img/15.png" alt=""></a>
+                        <a class="navbar-brand" href="index.jsp"><img src="img/core-img/15.png" alt="" style ="width:100%; height:100%;"></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav" aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
                         <!-- Nav -->
                         <div class="collapse navbar-collapse" id="dorneNav">
@@ -35,10 +35,16 @@
                                 <li class="nav-item">
                                 <a class="nav-link" href="boardList.do?bcode=401&cp=1&ps=10&zcode=0" >Q&A</a>
                                 </li>
-                                 <li>
-                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                 </li>
-	                                <c:choose>
+                                 <!-- <li>
+                                       </li> -->
+	                               
+                         
+                            </ul>
+                        </div>
+                        
+                           <div class="collapse navbar-collapse" id="dorneNav" style = "margin-left:500px;">
+                            <ul class="navbar-nav mr-auto" id="dorneMenu">
+                             <c:choose>
  	   								<c:when test="${id!=null && grade == '2'}">
  	   								<li class="nav-item">
  	   								<a class="nav-link" href="LogOut.do" >Logout</a>
@@ -67,9 +73,8 @@
    										</li>
                               	</c:otherwise>
 								</c:choose>
-                         
-                            </ul>
-                        </div>
+   							</ul>
+   							</div>
                     </nav>
                 </div>
             </div>
