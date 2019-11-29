@@ -938,9 +938,9 @@ function message() {
 							<!-- /.modal -->
 						</div>
 						<ul class="inbox-nav inbox-divider">
-							<li class="active"><a href="boardList.do?bcode=401&cp=1&ps=10&zcode=0"><i class="fa fa-inbox"></i>
+							<li><a href="boardList.do?bcode=401&cp=1&ps=10&zcode=0"><i class="fa fa-inbox"></i>
 									Q&A <!-- <span class="label label-danger pull-right">2</span></a></li> -->
-							<li><a href="boardList.do?bcode=303&cp=1&ps=10&zcode=0"><i class="fa fa-bookmark-o"></i> Notice</a>
+							<li  class="active"><a href="boardList.do?bcode=303&cp=1&ps=10&zcode=0"><i class="fa fa-bookmark-o"></i> Notice</a>
 							</li>
 						</ul>
 
