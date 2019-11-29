@@ -50,10 +50,10 @@
 }
 
 body {
-  color: #777777;
+  color: #906D3B;
   font-family: "Poppins", sans-serif;
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 18px;
+  font-weight: bold;
   line-height: 1.625em;
   position: relative;
 }
@@ -782,7 +782,8 @@ td, th {
 }
 
 b, sup, sub, u, del {
-  color: #49e4fa;
+  color: #125448;
+  font-weight:bold;
 }
 
 h1 {

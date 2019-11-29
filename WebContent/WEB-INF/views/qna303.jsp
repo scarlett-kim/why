@@ -69,7 +69,7 @@
 }
 
 .mail-box .sm-side .user-head {
-	background: none repeat scroll 0 0 #00a8b3;
+	background: none repeat scroll 0 0 #125448;
 	border-radius: 4px 0 0;
 	color: #fff;
 	min-height: 80px;
@@ -208,9 +208,9 @@ ul.labels-info li a i {
 }
 
 .inbox-head {
-	background: none repeat scroll 0 0 #41cac0;
+	background: none repeat scroll 0 0 #125448;
 	border-radius: 0 4px 0 0;
-	color: #341a79;
+	color: #fff;
 	min-height: 80px;
 	padding: 20px;
 }
@@ -859,23 +859,24 @@ function message() {
 				<div class="mail-box">
 					<aside class="sm-side">
 						<div class="user-head">
-							<a class="inbox-avatar" href="javascript:;"
+							<!-- <a class="inbox-avatar" href="javascript:;"
 								style="color: #341a79;"> <img width="64" height="60"
 								src="http://bootsnipp.com/img/avatars/ebeb306fd7ec11ab68cbcaa34282158bd80361a7.jpg">
-							</a>
+							</a> -->
 							<div class="user-name">
 								<h5>
 									<a href="#"></a>
 								</h5>
 								<span><a href="#"></a></span>
 							</div>
-							<a class="mail-dropdown pull-right" href="javascript:;"> <i
+							<!-- <a class="mail-dropdown pull-right" href="javascript:;"> 
+							<i
 								class="fa fa-chevron-down"></i>
-							</a>
+							</a> -->
 						</div>
 						<div class="inbox-body">
-							<a href="#myModal" data-toggle="modal" title="Compose"
-								class="btn btn-compose"> Compose </a>
+							<!-- <a href="#myModal" data-toggle="modal" title="Compose"
+								class="btn btn-compose"> Compose </a> -->
 							<!-- Modal -->
 							<div aria-hidden="true" aria-labelledby="myModalLabel"
 								role="dialog" tabindex="-1" id="myModal" class="modal fade"

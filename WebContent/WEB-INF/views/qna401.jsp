@@ -210,7 +210,7 @@ ul.labels-info li a i {
 .inbox-head {
 	background: none repeat scroll 0 0 #41cac0;
 	border-radius: 0 4px 0 0;
-	color: #341a79;
+	color: #125448;
 	min-height: 80px;
 	padding: 20px;
 }

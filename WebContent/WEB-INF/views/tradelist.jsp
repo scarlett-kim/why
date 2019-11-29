@@ -238,10 +238,10 @@ function writeOk() {
                                  <c:choose>
                                  <%-- <h4 id ="tcode" style ="text-align: center">&nbsp;&nbsp;${list.tcode}<i class="fas fa-cart-plus fa-3x" style ="color:#6b8e23;"></i></h4></a>  --%>
                                  <c:when test="${list.tcode==1}">
-                                    <h4 id ="tcode" style ="text-align: center">&nbsp;&nbsp;판매중<i class="fas fa-cart-plus fa-3x" style ="color:#6b8e23;"></i></h4></a>
+                                    <h4 id ="tcode" style ="text-align: center">&nbsp;&nbsp;판매중<i class="fas fa-cart-plus fa-3x" style ="color:#125448;"></i></h4></a>
                                  </c:when>
                                  <c:otherwise>
-                                    <h4 id ="tcode" style ="text-align: center">&nbsp;&nbsp;판매완료<i class="fas fa-shopping-cart fa-3x" style ="color:#6b8e23;"></i></h4></a>
+                                    <h4 id ="tcode" style ="text-align: center">&nbsp;&nbsp;판매완료<i class="fas fa-shopping-cart fa-3x" style ="color:#125448;"></i></h4></a>
                                  </c:otherwise>
                                  </c:choose>
                                  

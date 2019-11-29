@@ -30,7 +30,8 @@
 .tab {
   overflow: hidden;
   border: 1px solid #ccc;
-  background-color: #696969;
+  background-color: #fff;
+  font-color: #fff;
 
 }
 
@@ -44,16 +45,17 @@
   padding: 14px 16px;
   transition: 0.3s;
   font-size: 17px;
+  font-color: #fff;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color:  #deb887;
+  background-color:  #125448;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: #6b8e23;
+  background-color: #125448;
 }
 
 /* Style the tab content */
@@ -63,6 +65,11 @@
   border: 1px solid #ccc;
   border-top: none;
   height: 600px;
+  
+}
+
+.tablinks{
+ font-color: #fff;
 }
 
  
@@ -73,7 +80,7 @@
 
 $(function(){
  
-  var getpwd = new RegExp("^[a-zA-Z0-9]{8,16}$");
+  var getpwd = new RegExp("^[a-zA-Z0-9]{4,16}$");
   var getPhone = new RegExp("^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$");
   var pwdCheck = false;
   var phoneCheck = false;
@@ -271,7 +278,7 @@ $(function(){
 <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/hero.jpg)"> 
 <div style ="padding-top:200px; padding-bottom: 200px; margin-left: 100px; margin-right: 100px;">
 
-<div class="tab" style="background-color: white">
+<div class="tab">
 
   <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">나의 찜 목록</button>
   <button class="tablinks" onclick="openCity(event, 'Paris')">내가 쓴 후기</button>
